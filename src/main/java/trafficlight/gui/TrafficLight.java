@@ -1,9 +1,12 @@
 package trafficlight.gui;
 
+import trafficlight.observer.Observer;
 
 import java.awt.*;
 
-public class TrafficLight extends Light {
+//TODO:
+// The update () method is implemented in ConcreteObserver
+public class TrafficLight extends Light implements Observer {
 
     TrafficLight(Color color) {
         super(color);
@@ -19,4 +22,11 @@ public class TrafficLight extends Light {
     }
 
     //TODO implement a part of the pattern here
+    // Observer receives notification and is processing accordingly
+    // Implement the response method
+    @Override
+    public void update() {
+        // update colors (isOn = false --> see Class Light)
+        turnOn(!isOn);
+    }
 }

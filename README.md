@@ -1,5 +1,7 @@
 # Traffic Light
 
+https://github.com/ClarissaTreml/trafficlight
+
 Das ist das Codetemplate für die zweite Übung in Programmierung 2.
 
 Ziel: Umsetzung des Observer Patterns und des Singleton Patterns

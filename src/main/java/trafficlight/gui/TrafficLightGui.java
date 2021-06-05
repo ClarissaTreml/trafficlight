@@ -8,9 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TrafficLightGui extends JFrame implements ActionListener {
-
     public static final String ACTION_COMMAND_STOP = "stop";
-
     public static final String NAME_OF_THE_GAME = "Traffic Light";
 
     private JButton buttonStop;
@@ -21,7 +19,6 @@ public class TrafficLightGui extends JFrame implements ActionListener {
 
     private TrafficLightCtrl trafficLightCtrl = null;
 
-
     public TrafficLightGui(TrafficLightCtrl ctrl){
         super(NAME_OF_THE_GAME);
         trafficLightCtrl = ctrl;
@@ -30,9 +27,18 @@ public class TrafficLightGui extends JFrame implements ActionListener {
     }
 
     private void initLights(TrafficLightCtrl ctrl) {
-        //TODO implement a part of the pattern here
-        //create the TrafficLight
-        //connect subject and observer
+        //TODO: implement a part of the pattern here
+        // create the TrafficLight
+        green = new TrafficLight(Color.green);
+        yellow = new TrafficLight(Color.yellow);
+        red = new TrafficLight(Color.red);
+
+        //TODO:
+        // connect subject and observer
+        // connect to Controller
+        ctrl.getGreenState().addObserver(green);
+        ctrl.getYellowState().addObserver(yellow);
+        ctrl.getRedState().addObserver(red);
     }
 
     private void init() {
@@ -46,7 +52,6 @@ public class TrafficLightGui extends JFrame implements ActionListener {
         p1.add(yellow);
         p1.add(green);
 
-
         JPanel p2 = new JPanel(new FlowLayout());
         p2.add(buttonStop);
 
@@ -54,7 +59,6 @@ public class TrafficLightGui extends JFrame implements ActionListener {
         getContentPane().add(p2);
         pack();
     }
-
 
     public void showErrorMessage(Exception e) {
         JOptionPane pane = new JOptionPane();
@@ -64,7 +68,7 @@ public class TrafficLightGui extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e){
         if (ACTION_COMMAND_STOP.equals(e.getActionCommand())){
-           trafficLightCtrl.stop();
+            trafficLightCtrl.stop();
         }
     }
 }
