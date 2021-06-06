@@ -33,7 +33,6 @@ public class TrafficLightCtrl {
         //TODO:
         // useful to update the current state
         currentState.notifyObserver();
-        System.out.println("CURRENT");
     }
     //Stellt Einzigartigkeit sicher. Liefert Exemplar an Client.
     //Hier: Unsynchronisierte Lazy-Loading-Variante
@@ -52,7 +51,6 @@ public class TrafficLightCtrl {
                 //TODO: useful to update the current state and the old one
                 currentState.notifyObserver();  // = greenState
                 yellowState.notifyObserver();   //After 1500 millis --> update to next Color
-                System.out.println("YELLOW1");
                 return yellowState;
             }
             @Override
@@ -67,7 +65,6 @@ public class TrafficLightCtrl {
                 //TODO: useful to update the current state and the old one
                 currentState.notifyObserver();
                 yellowState.notifyObserver();
-                System.out.println("YELLOW2");
 
                 return yellowState;
             }
@@ -84,7 +81,6 @@ public class TrafficLightCtrl {
                     //TODO: useful to update the current state and the old one
                     currentState.notifyObserver();
                     redState.notifyObserver();
-                    System.out.println("RED");
 
                     return redState;
                 }else {
@@ -92,7 +88,6 @@ public class TrafficLightCtrl {
                     //TODO: useful to update the current state and the old one
                     currentState.notifyObserver();
                     greenState.notifyObserver();
-                    System.out.println("GREEN1");
 
                     return greenState;
                 }
@@ -139,5 +134,18 @@ public class TrafficLightCtrl {
     public void stop() {
         doRun = false;
     }
-}
 
+    //TODO: TrafficLightCtrlTest
+    // New Methode to be able to test the State Changes for Unit Tests
+    public State getCurrentState(){
+        return currentState;
+    }
+    public void setStates(State currentState, State previousState) {
+        if ((TrafficLightCtrl.getInstance().greenState == currentState)
+                || (currentState == yellowState && (previousState == greenState || previousState == redState))
+                || ((currentState == greenState || currentState == redState) && previousState == yellowState)) {
+            this.currentState = currentState;
+            this.previousState = previousState;
+        }
+    }
+}

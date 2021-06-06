@@ -7,8 +7,9 @@ import java.awt.*;
 //TODO:
 // The update () method is implemented in ConcreteObserver
 public class TrafficLight extends Light implements Observer {
-
-    TrafficLight(Color color) {
+    //TODO: CHANGE TO PUBLIC
+    // to be used in TrafficLightCtrlTest
+    public TrafficLight(Color color) {
         super(color);
     }
 
@@ -30,3 +31,4 @@ public class TrafficLight extends Light implements Observer {
         turnOn(!isOn);
     }
 }
+
