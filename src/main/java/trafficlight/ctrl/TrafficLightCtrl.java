@@ -16,7 +16,7 @@ public class TrafficLightCtrl {
     private final TrafficLightGui gui;
     private boolean doRun = true;
 
-    // TODO: Make Constructor private
+    //  Make Constructor private
     //  Damit es nur eine einzigartige Instanz gibt, muss eine Instanziierung durch den Client verhindert werden.
     //  Dafür wird der Konstruktur privat deklariert.
     //  Nun kann einzig der Singletoncode selbst das Singleton instanziieren.
